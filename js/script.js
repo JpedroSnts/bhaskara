@@ -59,7 +59,7 @@ function calcular(e) {
             x2 = parseFloat(x2) / (2 * parseFloat(vl_a.value));
             
             if(!eNum(x1) || !eNum(x2)){
-                res.innerHTML = `<span class="alert orange">Desculpe, não foi possivel obter o valor! :(</span>`;
+                res.innerHTML = `<span class="alert orange">Não possui raízes reais!</span>`;
             }else{
             res.innerHTML = `
                 <span class="alert blue">X' = ${x1}</span>
