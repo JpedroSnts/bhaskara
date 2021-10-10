@@ -23,7 +23,7 @@ h2 {
     top: 50%;
     left: 50%;
     margin-left: -30%;
-    margin-top: -193px;
+    margin-top: -228px;
 }
 
 .card-header {
@@ -75,8 +75,8 @@ label {
 }
 
 .btn {
-    margin: 1rem auto;
-    width: 30%;
+    margin: 1rem 0;
+    min-width: 30%;
     display: block;
     font-weight: 400;
     line-height: 1.5;
@@ -101,6 +101,29 @@ label {
 .btn:hover {
     border-color: #137246;
     background-color: #137246;
+}
+
+
+.btncalc{
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    min-width: auto;
+}
+
+.btncalc:hover{
+    background-color: #0d5ed6;
+    border-color: #0d5ed6;
+}
+
+.btnFechar{
+    background-color: #dc3545;
+    border-color: #dc3545;
+    min-width: auto;
+}
+
+.btnFechar:hover{
+    background-color: #b12e3b;
+    border-color: #b12e3b;
 }
 
 .alert {
@@ -130,12 +153,46 @@ label {
     font-weight: normal;
 }
 
+.bloqueio{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.9;
+}
+
+.escondido {
+    display: none;
+}
+
+.caixaFlutuante{
+    width: 302px;
+    height: 512px;
+    padding: 10px; 
+    font-weight: 700; overflow:auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -151px;
+    margin-top: -256px;
+    border-radius: 5px;
+    background-color: #efefef;
+    border-bottom: 1px solid #b9b9b9;
+}
+
 @media screen and (max-width: 750px) {
     .card {
         width: 90%;
         margin-left: -45%;
     }
     .btn {
-        width: 50%;
+        min-width: 50%;
     }
+
+    .btncalc{
+        min-width: auto;
+    }
+    
 }

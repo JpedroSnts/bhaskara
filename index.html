@@ -15,23 +15,36 @@
             <h2>Calculadora de Bhaskara</h2>
         </div>
         <div class="card-body">
+            <input type="hidden" id="a" value="">
+            <input type="hidden" id="b" value="">
+            <input type="hidden" id="c" value="">
             <label for="vl_a">Valor de A: </label>
             <input type="text" class="form-control" id="vl_a" maxlength="3">
             <label for="vl_b">Valor de B: </label>
             <input type="text" class="form-control" id="vl_b" maxlength="3">
             <label for="vl_c">Valor de C: </label>
             <input type="text" class="form-control" id="vl_c" maxlength="3">
-            <button class="btn">Calcular</button>
-
-            <div align="center" id="returns">
-                
+            <div align="center">
+                <button class="btn" id="btnCalcular">Calcular</button>
             </div>
 
+            <div align="center" id="returns">
+
+            </div>
         </div>
         <div class="card-footer">
             <a href="https://www.instagram.com/jpedrosnts/">&copy;JpedroSnts</a>
         </div>
+        <div class="bloqueio escondido" id="escondido"></div>
+        <div id="divCalculos" class="caixaFlutuante escondido" align="center">
+            <div id="areaCalculo">
+
+            </div>
+                <button class="btn btnFechar" id="btnFechar" type="button">Fechar</button>
+        </div>
     </form>
+
+
     <script src="js/script.js"></script>
 </body>
 
