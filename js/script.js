@@ -58,7 +58,7 @@ function calcular(e) {
             x1 = parseFloat(x1) / (2 * parseFloat(vl_a.value));
             x2 = parseFloat(x2) / (2 * parseFloat(vl_a.value));
             
-            if(!eNum(x1) || !eNum(x2)){
+            if(isNaN(parseFloat(x1)) || isNaN(parseFloat(x2))){
                 res.innerHTML = `<span class="alert orange">A equação não possui raízes reais!</span>`;
             }else{
             res.innerHTML = `
