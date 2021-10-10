@@ -55,33 +55,38 @@ function ExibirCalculos() {
     var rvlb = parseFloat(vlb * vlb);
     var r2 = parseFloat(4 * vla * vlc);
     var delta = rvlb - r2;
-    var raiz_delta = Math.sqrt(delta);
-    var resx1 = - vlb + raiz_delta;
+    var rdelta = Math.sqrt(delta);
+    var raiz_delta = rdelta.toFixed(2);
+    var resx0 = - vlb + parseFloat(raiz_delta);
+    var resx1 = resx0.toFixed(2); 
     var x1a = 2*vla;
-    var resx2 = - vlb - raiz_delta;
+    var resx00 = - vlb - parseFloat(raiz_delta);
+    var resx2 = resx00.toFixed(2); 
     var x2a = 2*vla;
-    var x1 = resx1 / x1a; 
-    var x2 = resx2 / x2a; 
+    var x0 = resx1 / x1a; 
+    var x00 = resx2 / x2a; 
+    var x1 = x0.toFixed(2); 
+    var x2 = x00.toFixed(2); 
     
 
     areaCalculo.innerHTML = (`
     Δ = b² - 4 * a * c <br>
-    Δ = ${vlb}² - 4 * ${vla} * ${vlc} <br>
-    Δ = ${rvlb} - ${r2} <br>
+    Δ = ${vlb}² - (4 * ${vla} * ${vlc}) <br>
+    Δ = ${rvlb} - (${r2}) <br>
     Δ = ${delta} <br>
     <br>
     <br>
-    <div style="text-decoration: underline;">_X = -b ± √Δ_</div>
+    <div style="text-decoration: underline;">X = -b ± √Δ</div>
     2*a<br>
-    <div><div style="text-decoration: underline;">_X' = -${vlb} + ${raiz_delta}</div>2*${vla}
-    <div style="text-decoration: underline;">_X' = ${resx1}</div>${x1a}<br>
+    <div><div style="text-decoration: underline;">X' = -(${vlb}) + ${raiz_delta}</div>2*${vla}
+    <div style="text-decoration: underline;">X' = ${resx1}</div>${x1a}<br>
     X' = ${x1}
     </div>
     <br>
     <br>
     <div>
-    <div><div style="text-decoration: underline;">_X" = -${vlb} - ${raiz_delta}</div>2*${vla}
-    <div style="text-decoration: underline;">_X" = ${resx2}</div>${x2a}<br>
+    <div><div style="text-decoration: underline;">X" = -(${vlb}) - ${raiz_delta}</div>2*${vla}
+    <div style="text-decoration: underline;">X" = ${resx2}</div>${x2a}<br>
     X" = ${x2}<br>
     `);
 }
@@ -113,6 +118,8 @@ function calcular(e) {
             x2 = - parseFloat(vl_b.value) - parseFloat(raiz_delta);
             x1 = parseFloat(x1) / (2 * parseFloat(vl_a.value));
             x2 = parseFloat(x2) / (2 * parseFloat(vl_a.value));
+            x1 = x1.toFixed(2);
+            x2 = x2.toFixed(2);
 
             if (isNaN(parseFloat(x1)) || isNaN(parseFloat(x2))) {
                 res.innerHTML = `<span class="alert orange">A equação não possui raízes reais!</span>`;
