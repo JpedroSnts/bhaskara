@@ -2,50 +2,70 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Calculadora de bhaskara</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Calculadora de bhaskara</title>
 </head>
 
 <body>
-    <form class="card">
-        <div class="card-header" align="center">
-            <h2>Calculadora de Bhaskara</h2>
-        </div>
-        <div class="card-body">
-            <input type="hidden" id="a" value="">
-            <input type="hidden" id="b" value="">
-            <input type="hidden" id="c" value="">
-            <label for="vl_a">Valor de A: </label>
-            <input type="text" class="form-control" id="vl_a" maxlength="3">
-            <label for="vl_b">Valor de B: </label>
-            <input type="text" class="form-control" id="vl_b" maxlength="3">
-            <label for="vl_c">Valor de C: </label>
-            <input type="text" class="form-control" id="vl_c" maxlength="3">
-            <div align="center">
-                <button class="btn" id="btnCalcular">Calcular</button>
-            </div>
+  <form class="card">
+    <div class="card-header" align="center">
+      <h2>Calculadora de Bhaskara</h2>
+    </div>
+    <div class="card-body">
+      <label for="valueA">Valor de A: </label>
+      <input type="number" class="form-control" id="valueA" />
+      <label for="valueB">Valor de B: </label>
+      <input type="number" class="form-control" id="valueB" />
+      <label for="valueC">Valor de C: </label>
+      <input type="number" class="form-control" id="valueC" />
 
-            <div align="center" id="returns">
+      <button class="btn" id="btnCalculate">Calcular</button>
 
-            </div>
-        </div>
-        <div class="card-footer">
-            <a href="https://www.instagram.com/jpedrosnts/">&copy;JpedroSnts</a>
-        </div>
-        <div class="bloqueio escondido" id="escondido"></div>
-        <div id="divCalculos" class="caixaFlutuante escondido" align="center">
-            <div id="areaCalculo">
+      <div id="returns"></div>
+    </div>
+    <div class="card-footer">
+      <a href="https://www.instagram.com/jpedrosnts/" target="_blank">&copy;JpedroSnts</a>
+    </div>
+  </form>
 
-            </div>
-                <button class="btn btnFechar" id="btnFechar" type="button">Fechar</button>
-        </div>
-    </form>
+  <div id="modal" class="hideModal">
+    <div id="calcs">
+      <p>
+        Δ = b² - 4 * a * c <br>
+        Δ = <span class="spanValueB"></span>² - (4 * <span class="spanValueA"></span> * <span
+          class="spanValueC"></span>) <br>
+        Δ = <span id="deltaCalc1"></span> - (<span id="deltaCalc2"></span>) <br>
+        Δ = <span id="delta"></span> <br>
+      </p>
+      <br>
+      <p>
+      <div class="underline">X = -b ± √Δ</div>
+      2*a<br>
+      <div>
+        <div class="underline">X' = -(<span class="spanValueB"></span>) + <span class="deltaSqrt"></span></div>2*<span
+          class="spanValueA"></span>
+        <div class="underline">X' = <span id="calcX1"></span></div><span class="baseCalcX"></span><br>
+        X' = <span id="valueX1"></span>
+      </div>
+      </p>
+      <br>
+      <p>
+      <div class="underline">X" = -(<span class="spanValueB"></span>) - <span class="deltaSqrt"></span></div>2*<span
+        class="spanValueA"></span>
+      <div class="underline">X" = <span id="calcX2"></span></div><span class="baseCalcX"></span><br>
+      X" = <span id="valueX2"></span><br>
+      </p>
+      <br>
+      <button class="btn btnClose" id="btnClose" type="button">
+        Fechar
+      </button>
+    </div>
+  </div>
 
-
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

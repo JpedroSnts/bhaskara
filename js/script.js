@@ -1,147 +1,145 @@
-function eNum(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
+window.onload = function () {
+    const elTxtValueA = document.querySelector("#valueA");
+    const elTxtValueB = document.querySelector("#valueB");
+    const elTxtValueC = document.querySelector("#valueC");
+    const elBtnCalc = document.querySelector("#btnCalculate");
+    const elBtnClose = document.querySelector("#btnClose");
+    const elDivReturns = document.querySelector("#returns");
+    const isNumber = (num) => isNaN(parseFloat(num));
 
-var btn = document.querySelector("#btnCalcular");
-var btnFechar = document.querySelector("#btnFechar");
-var vl_a = document.querySelector("#vl_a");
-var vl_b = document.querySelector("#vl_b");
-var vl_c = document.querySelector("#vl_c");
-var res = document.querySelector("#returns");
-vl_a.addEventListener('input', a);
-vl_b.addEventListener('input', b);
-vl_c.addEventListener('input', c);
-btn.addEventListener('click', calcular);
-btnFechar.addEventListener('click', fecharCalc);
-
-function a() {
-    if (!eNum(vl_a.value)) {
-        vl_a.style.border = "solid 1px #dc3545";
-        res.innerHTML = `<span class="alert red">Somente números!</span>`;
-    } else {
-        vl_a.style.border = "solid 1px #198754";
-        res.innerHTML = ``;
-    }
-}
-function b() {
-    if (!eNum(vl_b.value)) {
-        vl_b.style.border = "solid 1px #dc3545";
-        res.innerHTML = `<span class="alert red">Somente números!</span>`;
-    } else {
-        vl_b.style.border = "solid 1px #198754";
-        res.innerHTML = ``;
-    }
-}
-function c() {
-    if (!eNum(vl_c.value)) {
-        vl_c.style.border = "solid 1px #dc3545";
-        res.innerHTML = `<span class="alert red">Somente números!</span>`;
-    } else {
-        vl_c.style.border = "solid 1px #198754";
-        res.innerHTML = ``;
-    }
-}
-
-function ExibirCalculos() {
-    var divCalculos = document.querySelector("#divCalculos");
-    var areaCalculo = document.querySelector("#areaCalculo");
-    var bloqueio = document.querySelector(".bloqueio");
-    divCalculos.classList.remove("escondido");
-    bloqueio.classList.remove("escondido");
-
-    var vla = document.querySelector("#a").value;
-    var vlb = document.querySelector("#b").value;
-    var vlc = document.querySelector("#c").value;
-    var rvlb = parseFloat(vlb * vlb);
-    var r2 = parseFloat(4 * vla * vlc);
-    var delta = rvlb - r2;
-    var rdelta = Math.sqrt(delta);
-    var raiz_delta = rdelta.toFixed(2);
-    var resx0 = - vlb + parseFloat(raiz_delta);
-    var resx1 = resx0.toFixed(2); 
-    var x1a = 2*vla;
-    var resx00 = - vlb - parseFloat(raiz_delta);
-    var resx2 = resx00.toFixed(2); 
-    var x2a = 2*vla;
-    var x0 = resx1 / x1a; 
-    var x00 = resx2 / x2a; 
-    var x1 = x0.toFixed(2); 
-    var x2 = x00.toFixed(2); 
-    
-
-    areaCalculo.innerHTML = (`
-    Δ = b² - 4 * a * c <br>
-    Δ = ${vlb}² - (4 * ${vla} * ${vlc}) <br>
-    Δ = ${rvlb} - (${r2}) <br>
-    Δ = ${delta} <br>
-    <br>
-    <br>
-    <div style="text-decoration: underline;">X = -b ± √Δ</div>
-    2*a<br>
-    <div><div style="text-decoration: underline;">X' = -(${vlb}) + ${raiz_delta}</div>2*${vla}
-    <div style="text-decoration: underline;">X' = ${resx1}</div>${x1a}<br>
-    X' = ${x1}
-    </div>
-    <br>
-    <br>
-    <div>
-    <div><div style="text-decoration: underline;">X" = -(${vlb}) - ${raiz_delta}</div>2*${vla}
-    <div style="text-decoration: underline;">X" = ${resx2}</div>${x2a}<br>
-    X" = ${x2}<br>
-    `);
-}
-
-function fecharCalc(){
-    var divCalculos = document.querySelector("#divCalculos");
-    var areaCalculo = document.querySelector("#areaCalculo");
-    var bloqueio = document.querySelector(".bloqueio");
-    divCalculos.classList.add("escondido");
-    bloqueio.classList.add("escondido");
-
-    areaCalculo.innerHTML = "";
-}
-
-function calcular(e) {
-    e.preventDefault();
-    if (vl_a.value == "" || vl_a.value == null || vl_b.value == "" || vl_b.value == null || vl_c.value == "" || vl_c.value == null) {
-        res.innerHTML = `<span class="alert red">Preencha todos os campos!</span>`;
-    } else {
-        if (!eNum(vl_a.value) || !eNum(vl_b.value) || !eNum(vl_c.value)) {
-            res.innerHTML = `<span class="alert red">Somente números!</span>`;
+    function invalidField(field) {
+        if (field == "" || field > 999 || field < -999 || isNumber(field)) {
+            return true;
         } else {
-            var delta = 0;
-            var x1 = 0;
-            var x2 = 0;
-            delta = parseFloat(vl_b.value) * parseFloat(vl_b.value) - 4 * parseFloat(vl_a.value) * parseFloat(vl_c.value);
-            raiz_delta = Math.sqrt(delta);
-            x1 = - parseFloat(vl_b.value) + parseFloat(raiz_delta);
-            x2 = - parseFloat(vl_b.value) - parseFloat(raiz_delta);
-            x1 = parseFloat(x1) / (2 * parseFloat(vl_a.value));
-            x2 = parseFloat(x2) / (2 * parseFloat(vl_a.value));
-            x1 = x1.toFixed(2);
-            x2 = x2.toFixed(2);
+            return false;
+        }
+    }
 
-            if (isNaN(parseFloat(x1)) || isNaN(parseFloat(x2))) {
-                res.innerHTML = `<span class="alert orange">A equação não possui raízes reais!</span>`;
-            } else {
-                res.innerHTML = `
-                <span class="alert blue">X' = ${x1}</span>
-                <span class="alert blue">X" = ${x2}</span>
-                <button class="btn btncalc" type="button" id="btnExibirCalculos">Exibir Calculos</button>`;
-                var btnExibirCalculos = document.querySelector("#btnExibirCalculos");
-                btnExibirCalculos.addEventListener('click', ExibirCalculos);
-            }
-            document.querySelector("#a").value = vl_a.value;
-            document.querySelector("#b").value = vl_b.value;
-            document.querySelector("#c").value = vl_c.value;
-            vl_a.value = "";
-            vl_b.value = "";
-            vl_c.value = "";
-            vl_a.style.border = "solid 1px #ced4da";
-            vl_b.style.border = "solid 1px #ced4da";
-            vl_c.style.border = "solid 1px #ced4da";
-            vl_a.focus();
+    function clearInputs() {
+        elTxtValueA.value = "";
+        elTxtValueA.classList.remove("inputSuccess");
+        elTxtValueB.value = "";
+        elTxtValueB.classList.remove("inputSuccess");
+        elTxtValueC.value = "";
+        elTxtValueC.classList.remove("inputSuccess");
+        elTxtValueA.focus();
+    }
+
+    function verifyIsNum(e) {
+        if (e.key === "Enter" || e.key === "Tab") {
+            return;
         }
 
+        const spanErr = document.createElement("span");
+        elDivReturns.innerHTML = "";
+        spanErr.classList.add("alert", "red");
+
+        if (isNumber(this.value) || this.value > 999 || this.value < -999 || this.value == "") {
+            this.classList.remove("inputSuccess");
+            this.classList.add("inputError");
+
+            if (this.value == "" || isNumber(this.value)) {
+                spanErr.textContent = "Preencha todos os campos com números!";
+            } else if (this.value > 999) {
+                spanErr.textContent = "O máximo é 999!";
+            } else if (this.value < -999) {
+                spanErr.textContent = "O mínimo é -999!";
+            }
+
+            elDivReturns.appendChild(spanErr);
+        } else {
+            this.classList.remove("inputError");
+            this.classList.add("inputSuccess");
+        }
     }
-}
+
+    function showCalcs(e) {
+        const modal = document.querySelector("#modal");
+
+        if (modal.classList.contains("hideModal")) {
+            modal.classList.remove("hideModal");
+            modal.classList.add("showModal");
+        } else {
+            modal.classList.remove("showModal");
+            modal.classList.add("hideModal");
+        }
+        e.preventDefault();
+    }
+
+    function calculate(e) {
+        e.preventDefault();
+        elDivReturns.innerHTML = "";
+        const valueA = elTxtValueA.value;
+        const valueB = elTxtValueB.value;
+        const valueC = elTxtValueC.value;
+        const spanResultX1 = document.createElement("span");
+        const spanResultX2 = document.createElement("span");
+        const buttonCalc = document.createElement("button");
+
+        if (!invalidField(valueA) && !invalidField(valueB) && !invalidField(valueC)) {
+            const delta = Math.pow(valueB, 2) - 4 * valueA * valueC;
+            const valueX1 = ((-valueB + Math.sqrt(delta)) / (2 * valueA)).toFixed(2);
+            const valueX2 = ((-valueB - Math.sqrt(delta)) / (2 * valueA)).toFixed(2);
+            if (isNaN(valueX1) || isNaN(valueX2)) {
+                spanResultX1.classList.add("alert", "orange");
+                spanResultX1.textContent = "A equação não possui raízes reais!";
+                elDivReturns.appendChild(spanResultX1);
+            } else {
+                spanResultX1.classList.add("alert", "blue");
+                spanResultX2.classList.add("alert", "blue");
+                buttonCalc.classList.add("btn", "btnCalc");
+                buttonCalc.id = "btnShowCalcs";
+                buttonCalc.addEventListener("click", showCalcs);
+                spanResultX1.textContent = `X' = ${valueX1}`;
+                elDivReturns.appendChild(spanResultX1);
+                spanResultX2.textContent = `X" = ${valueX2}`;
+                elDivReturns.appendChild(spanResultX2);
+                buttonCalc.textContent = "Exibir Cálculos";
+                elDivReturns.appendChild(buttonCalc);
+
+                // Change values of modal
+                document.querySelectorAll(".spanValueA").forEach(el => {
+                    el.textContent = valueA;
+                });
+                document.querySelectorAll(".spanValueB").forEach(el => {
+                    el.textContent = valueB;
+                });
+                document.querySelectorAll(".spanValueC").forEach(el => {
+                    el.textContent = valueC;
+                });
+
+                document.querySelector("#valueX1").textContent = valueX1;
+                document.querySelector("#valueX2").textContent = valueX2;
+                document.querySelector("#delta").textContent = delta.toFixed(2);
+
+                document.querySelectorAll(".deltaSqrt").forEach(el => {
+                    el.textContent = Math.sqrt(delta).toFixed(2);
+                });
+
+                document.querySelector("#deltaCalc1").textContent = Math.pow(valueB, 2);
+                document.querySelector("#deltaCalc2").textContent = 4 * valueA * valueC;
+
+                document.querySelector("#calcX1").textContent = (- valueB + Math.sqrt(delta)).toFixed(2);
+                document.querySelector("#calcX2").textContent = (- valueB - Math.sqrt(delta)).toFixed(2);
+
+                document.querySelectorAll(".baseCalcX").forEach(el => {
+                    el.textContent = 2 * valueA;
+                });
+            }
+            clearInputs();
+        } else {
+            spanResultX1.classList.add("alert", "red");
+            spanResultX1.textContent = "Preencha todos os campos com números!";
+            elDivReturns.appendChild(spanResultX1);
+        }
+    }
+
+    elBtnClose.addEventListener("click", showCalcs);
+    elBtnCalc.addEventListener("click", calculate);
+    elTxtValueA.addEventListener("change", verifyIsNum);
+    elTxtValueA.addEventListener("keyup", verifyIsNum);
+    elTxtValueB.addEventListener("change", verifyIsNum);
+    elTxtValueB.addEventListener("keyup", verifyIsNum);
+    elTxtValueC.addEventListener("change", verifyIsNum);
+    elTxtValueC.addEventListener("keyup", verifyIsNum);
+};
